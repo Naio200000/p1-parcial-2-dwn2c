@@ -40,6 +40,12 @@ main {
     background-color: #fff;
     color: var(--second-font-color);
 }
+.home {
+    background-color: #fff;
+    padding: 1rem;
+    margin-top: 1rem;
+    color: var(--main-font-color);
+}
 .nosotros {
     background-color: var(--second-bg-color);
     padding-top: 72px;
