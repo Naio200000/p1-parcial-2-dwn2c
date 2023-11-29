@@ -7,4 +7,6 @@ Agregar catche
 
 Agregar CATCH a los fetch por si no hay conexion ni catche
 
+Manifest 
+
 Agregar log in por POST
