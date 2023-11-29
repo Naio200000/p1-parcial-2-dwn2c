@@ -82,10 +82,10 @@ class Producto {
     * @param string $categoria : Es un string de la categoría que estamos buescando.
     * @return array Un array de todos nuestros productos de la categoria seleccionada.
     */
-    private function catalogoCompleto() :array {
+    Public function catalogoCompleto() :array {
         
         $productosOBJ = [];
-        $productosJSON = file_get_contents('datos/productos.json');
+        $productosJSON = file_get_contents('../datos/productos.json');
         $productos = json_decode($productosJSON);
         foreach ($productos as $object) {
             $newObject = new self ();
