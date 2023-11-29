@@ -7,7 +7,6 @@ const htmlProductos = d.querySelector('#productos');
 const exampleModal = d.getElementById('exampleModal');
 const selectorCategoria = d.getElementById('categoria-producto');
 const btn_miniCarrito = d.querySelectorAll('.minicarrito-cantidad');
-const productos = []
 // Declaracion de Clases
 /**
  * Clase Productos con sus metodos
@@ -276,11 +275,21 @@ class Carrito {
 /* Armado de Objetos */
 // Se declaran la productos y se ejecuta la funcion cargar productos que itera y crea el array de productos de clase Producto
 const traerProductos = async function () {
+    let productos = []
     await fetch('./../acciones/get-productos.php')
         .then(algo => algo.json())
-        .then (productos => productos.map((p) => {
-            cargarProductos(p)
+        .then (resultado => resultado.map((p) => {
+            productos.push(cargarProductos(p))
+        }) )
+        mostrarProductos (productos);
+}
 
+const traerProductosCategoria = async function (categoria) {
+    let productos = []
+    await fetch(`./../acciones/get-productos.php?categoria=${categoria}`)
+        .then(algo => algo.json())
+        .then (resultado => resultado.map((p) => {
+            productos.push(cargarProductos(p))    
         }) )
         mostrarProductos (productos);
 }
@@ -296,9 +305,7 @@ let carrito = new Carrito;
  * @param {Objeto JSON} data 
  */
 function cargarProductos(data) {
-        let producto = new Producto (data.id, data.nombre, data.descrip, data.descrip_larga, data.precio, data.imagen, data.altImagen, data.categoria);
-        productos.push(producto);
-
+        return new Producto (data.id, data.nombre, data.descrip, data.descrip_larga, data.precio, data.imagen, data.altImagen, data.categoria);
 }
 /**
  * Toma el nodo donde se van mostrar todas las tarjetas de productos y agrega las cards de cada producto
@@ -324,15 +331,6 @@ function mostrarMiniCarrito () {
  * @param {Toma el valor del selector de categorias y filtra los productos por ese valor} valor 
  * @returns array de productos filtrados
  */
-function filtrarProductos(valor) {
-    let productosFiltrados = [];
-    for (let i = 0; i < productos.length; i++) {
-        if (productos[i].categoria == valor) {
-            productosFiltrados.push(productos[i]);
-        }
-    }
-    return productosFiltrados
-}
 /**
  * Agregar el event listener al boton del carrito para ejecutar el modal
  */
@@ -348,9 +346,10 @@ function btn_carrito() {
  */
 selectorCategoria.addEventListener('change', () => {
     if (selectorCategoria.value == 'Todas') {
+
         mostrarProductos (productos);
     } else {
-        mostrarProductos (filtrarProductos(selectorCategoria.value));
+        mostrarProductos (traerProductosCategoria(selectorCategoria.value));
     }
 })
 

@@ -1,8 +1,13 @@
 <?php
 
 require_once('../Clases/Producto.php');
+$categoria = $_GET['categoria'] ?? false;
 
-$data = (new Producto)->catalogoCompleto();
+if (!$categoria) {
+    $data = (new Producto)->catalogoCompleto();
+} else {
+    $data = (new Producto)->catalogoCategoria($categoria);
+}
 
 header('Content-Type: application/json; charset=utf-8');
 echo json_encode($data);
