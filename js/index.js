@@ -24,6 +24,7 @@ class Producto {
      * @param {Array de Imagenes} imagen 
      * @param {Array de text alt de imagenes} altImagen 
      * @param {categoria} categoria 
+     * @param {modulo html} card 
      */
     constructor(id,nombre, descrip, descrip_larga, precio, imagen,altImagen, categoria) {
         this.id = id;
@@ -278,13 +279,11 @@ const traerProductos = async function () {
     await fetch('./acciones/get-productos.php')
         .then(algo => algo.json())
         .then (productos => productos.map((p) => {
-            // console.log(p)
             cargarProductos(p)
+
         }) )
-
+        mostrarProductos (productos);
 }
-
-traerProductos()
 
 
 // Se declara el objeto carrito de clase Carrito
@@ -306,7 +305,7 @@ function cargarProductos(data) {
  * @param {Array de productos} array 
  */
 function mostrarProductos (array) {
-    console.log(array)
+
     htmlProductos.innerHTML = '';
     for (let i = 0; i < 21; i++) {
         htmlProductos.appendChild(array[i].card);
@@ -358,7 +357,7 @@ selectorCategoria.addEventListener('change', () => {
 /**
  * Se ejecutan las primeras funciones de carga al iniciar la pagina
  */
-mostrarProductos (productos);
+traerProductos()
 mostrarMiniCarrito();
 btn_carrito();
 /**
