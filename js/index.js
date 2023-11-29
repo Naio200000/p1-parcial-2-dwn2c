@@ -77,12 +77,8 @@ class Producto {
         productoNombre.id = `${this.id}boton_mostrar`;
         productoNombre.addEventListener('click', (e) => {
             let boton = e.target;
-            for (let i = 0; i < productos.length; i++) {
-                if (parseInt(boton.id) == productos[i].id) {
-                    productos[i].agregarDatosModal();
-                    break
-                }
-            }
+            traerProductoid(parseInt(boton.id))
+
         })
         productoNombre.innerHTML = this.nombre;
         let productoDescrip = d.createElement('p');
@@ -115,47 +111,7 @@ class Producto {
         col.append(productoCard);
         return col;
     }
-    /**
-     * Toma un elemento y le agrega el escuchhador del evento click para ejecutar la funcion que agrega los valores al mini carrito dentro del modal del producto
-     */
-    agregarBotonModal() {
-        let boton = d.getElementById('botonProducto').children[1];
-        if (boton.id == 'cambiarIDBoton') {
-            boton.innerHTML = `Agregar <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16"><path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/><path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>`;
-            boton.addEventListener('click', (e) => {
-                let boton = e.target;
-                for (let i = 0; i < productos.length; i++) {
-                    if (parseInt(boton.id) == productos[i].id) {
-                        carrito.agregar(productos[i])
-                        break
-                    }
-                }
-                mostrarMiniCarrito();
-            })
-        }
-        boton.id = `${this.id}productoboton`;
-    }
-    /**
-     * Crea el modal del producto
-     * Toma los elementos del modal y modifica sus valores
-     */
-    agregarDatosModal() {
-        d.getElementById('tituloProducto').innerHTML = this.nombre
-        let carrousel = d.getElementById('carrusel-producto').children;
-        for (let i = 0; i < carrousel.length; i++) {
-            carrousel[i].innerHTML = '';
-            let img = d.createElement('img');
-            img.setAttribute('src', this.imagen[i]);
-            img.setAttribute('alt', this.altImagen[i]);
-            img.setAttribute('class', 'd-block w-100');
-            carrousel[i].appendChild(img);
-        }
-        d.getElementById('categoriaProducto').innerHTML = this.categoria;
-        d.getElementById('descripProducto').innerHTML = this.descrip_larga;
-        d.getElementById('precioProducto').innerHTML = this.precio;
-        d.getElementById('precioCuotas').innerHTML = (this.precio / 6).toFixed(2);
-        this.agregarBotonModal();
-    }
+
 };
 /**
  * Clase para el carrito
@@ -275,7 +231,7 @@ class Carrito {
 /* Armado de Objetos */
 // Se declaran la productos y se ejecuta la funcion cargar productos que itera y crea el array de productos de clase Producto
 const traerProductos = async function () {
-    let productos = []
+    productos = []
     await fetch('./../acciones/get-productos.php')
         .then(algo => algo.json())
         .then (resultado => resultado.map((p) => {
@@ -285,7 +241,7 @@ const traerProductos = async function () {
 }
 
 const traerProductosCategoria = async function (categoria) {
-    let productos = []
+    productos = []
     await fetch(`./../acciones/get-productos.php?categoria=${categoria}`)
         .then(algo => algo.json())
         .then (resultado => resultado.map((p) => {
@@ -293,12 +249,58 @@ const traerProductosCategoria = async function (categoria) {
         }) )
         mostrarProductos (productos);
 }
+const traerProductoid = async function (id) {
+    await fetch(`./../acciones/get-productos.php?id=${id}`)
+        .then(algo => algo.json())
+        .then (resultado => agregarDatosModal(cargarProductos(resultado))  )
+        
+}
 
+/**
+ * Toma un elemento y le agrega el escuchhador del evento click para ejecutar la funcion que agrega los valores al mini carrito dentro del modal del producto
+ */
+function agregarBotonModal() {
+    let boton = d.getElementById('botonProducto').children[1];
+    if (boton.id == 'cambiarIDBoton') {
+        boton.innerHTML = `Agregar <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16"><path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/><path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>`;
+        boton.addEventListener('click', (e) => {
+            let boton = e.target;
+            for (let i = 0; i < productos.length; i++) {
+                if (parseInt(boton.id) == productos[i].id) {
+                    carrito.agregar(productos[i])
+                    break
+                }
+            }
+            mostrarMiniCarrito();
+        })
+    }
+    boton.id = `${this.id}productoboton`;
+}
+/**
+ * Crea el modal del producto
+ * Toma los elementos del modal y modifica sus valores
+ */
+function agregarDatosModal(producto) {
+    d.getElementById('tituloProducto').innerHTML = producto.nombre
+    let carrousel = d.getElementById('carrusel-producto').children;
+    for (let i = 0; i < carrousel.length; i++) {
+        carrousel[i].innerHTML = '';
+        let img = d.createElement('img');
+        img.setAttribute('src', producto.imagen[i]);
+        img.setAttribute('alt', producto.altImagen[i]);
+        img.setAttribute('class', 'd-block w-100');
+        carrousel[i].appendChild(img);
+    }
+    d.getElementById('categoriaProducto').innerHTML = producto.categoria;
+    d.getElementById('descripProducto').innerHTML = producto.descrip_larga;
+    d.getElementById('precioProducto').innerHTML = producto.precio;
+    d.getElementById('precioCuotas').innerHTML = (producto.precio / 6).toFixed(2);
+    // this.agregarBotonModal();
+}
 
 // Se declara el objeto carrito de clase Carrito
+let productos =[]
 let carrito = new Carrito;
-
-
 
 /**
  * Itera la creacion de nuevos Productos
@@ -347,9 +349,9 @@ function btn_carrito() {
 selectorCategoria.addEventListener('change', () => {
     if (selectorCategoria.value == 'Todas') {
 
-        mostrarProductos (productos);
+        traerProductos();
     } else {
-        mostrarProductos (traerProductosCategoria(selectorCategoria.value));
+        traerProductosCategoria(selectorCategoria.value);
     }
 })
 
