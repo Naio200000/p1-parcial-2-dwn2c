@@ -129,6 +129,7 @@ class Carrito {
      */
     agregar(objeto){
         this.producto.push(objeto);
+        this.guardarCarritoLocal()
     }
     /**
      * 
@@ -225,7 +226,20 @@ class Carrito {
         d.getElementById('carritoPrecioProducto').innerHTML = this.calcularTotal();;
         d.getElementById('carritoPrecioTotalCuota').innerHTML = (this.calcularTotal() / 6).toFixed(2);
     }
+    guardarCarritoLocal() {
+        localStorage.setItem("carrito", JSON.stringify(this.producto));
+    }
+    obtenerCarritoLocal() {
+        this.producto = JSON.parse(localStorage.getItem("carrito"));
+    }
+    
 };
+
+
+
+
+
+
 /* Armado de Objetos */
 // Se declaran la productos y se ejecuta la funcion cargar productos que itera y crea el array de productos de clase Producto
 const traerProductos = async function () {
@@ -322,6 +336,7 @@ function mostrarProductos (array) {
  * Ejecuta los metodos del carrito para agregar los valores de cantidad y precio
  */
 function mostrarMiniCarrito () {
+    // if (localStorage.getItem("carrito")) carrito.obtenerCarritoLocal()
     carrito.armarMiniCarrito('minicarrito-cantidad', carrito.producto.length);
     carrito.armarMiniCarrito('minicarrito-precio', carrito.calcularTotal());
 
