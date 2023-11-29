@@ -1,5 +1,19 @@
-import misProductos from '../productos.json' assert {type: 'json'};
+
 // 'use strict';
+
+const consultAllChar = async function () {
+    
+
+    consulta = await fetch('./acciones/get-productos.php')
+                    .then(algo => algo.json())
+                    .then (algo => console.log(algo))
+
+}
+
+let misProductos = consultAllChar()
+
+console.log(misProductos)
+
 
 /*
  *  Alsinet Nicolas
