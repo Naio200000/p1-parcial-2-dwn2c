@@ -3,79 +3,15 @@
 
 class Producto {
 
-    private $id;
-    private $nombre;
-    private $descripCorta;
-    private $descripLarga;
-    private $etc;
-    private $tiempo;
-    private $precio;
-    private $imagen;
-    private $categoria;
-
-    /**
-    * Obtiene el valor de id
-    */ 
-    public function getId(){
-        return $this->id;
-    }
-
-    /**
-    * Obtiene el valor de nombre
-    */ 
-    public function getNombre(){
-        return $this->nombre;
-    }
-
-    /**
-    * Obtiene el valor de descripCorta
-    */ 
-    public function getDescripCorta(){
-        return $this->descripCorta;
-    }
-
-    /**
-    * Obtiene el valor de descripLarga
-    */ 
-    public function getDescripLarga(){
-        return $this->descripLarga;
-    }
-
-    /**
-    * Obtiene el array de etc
-    */ 
-    public function getEtc(){
-        return $this->etc;
-    }
-   
-    /**
-    * Obtiene el valor de tiempo
-    */ 
-    public function getTiempo(){
-        return $this->tiempo;
-    }
-    
-    /**
-    * Obtiene el valor de precio
-    */ 
-    public function getPrecio(){
-        return $this->precio;
-    }
-
-    /**
-    * Obtiene  el array de imagenes
-    */ 
-    public function getImagen(){
-        return $this->imagen;
-    }
-
-
-    /**
-    * Obtiene el valor de categoria
-    */ 
-    public function getCategoria(){
-        return $this->categoria;
-    }
+    public $id;
+    public $nombre;
+    public $descripCorta;
+    public $descripLarga;
+    public $etc;
+    public $tiempo;
+    public $precio;
+    public $imagen;
+    public $categoria;
 
     /**
     * Devuelve nuestro catalogo dependiendo de la categoria seleccionada.
