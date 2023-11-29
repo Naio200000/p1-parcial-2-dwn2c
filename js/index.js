@@ -360,18 +360,21 @@ function btn_carrito() {
 /**
  * Agrega el event listener 'change' en el selector de categoria y de ser necesario ejecuta la funcion filtrar y los muestra
  */
-selectorCategoria.addEventListener('change', () => {
-    if (selectorCategoria.value == 'Todas') {
+if (selectorCategoria != null) {
 
-        traerProductos();
-    } else {
-        traerProductosCategoria(selectorCategoria.value);
-    }
-})
+    selectorCategoria.addEventListener('change', () => {
+        if (selectorCategoria.value == 'Todas') {
+    
+            traerProductos();
+        } else {
+            traerProductosCategoria(selectorCategoria.value);
+        }
+    })
+}
 
 /**
  * Se ejecutan las primeras funciones de carga al iniciar la pagina
  */
-traerProductos()
+if (htmlProductos != null) traerProductos()
 mostrarMiniCarrito();
 btn_carrito();
