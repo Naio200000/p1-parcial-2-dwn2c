@@ -239,13 +239,7 @@ class Carrito {
     }
 };
 
-
-
-
-
-
-/* Armado de Objetos */
-// Se declaran la productos y se ejecuta la funcion cargar productos que itera y crea el array de productos de clase Producto
+/* Trae todo el catalogo completo desde una consulta fetch */
 const traerProductos = async function () {
     productos = []
     await fetch('./../acciones/get-productos.php')
@@ -255,7 +249,10 @@ const traerProductos = async function () {
         }) )
         mostrarProductos (productos);
 }
-
+/**
+ * Trae todo el catalogo segun categoria desde una consulta fetch
+ * @param {Categoria a buscar} categoria 
+ */
 const traerProductosCategoria = async function (categoria) {
     productos = []
     await fetch(`./../acciones/get-productos.php?categoria=${categoria}`)
@@ -266,15 +263,17 @@ const traerProductosCategoria = async function (categoria) {
         mostrarProductos (productos);
 }
 
+/**
+ * Trae un producto particular segun su ID
+ * @param {Id del producto a buscar} id 
+ */
 const traerProductoid = async function (id) {
     await fetch(`./../acciones/get-productos.php?id=${id}`)
         .then(algo => algo.json())
         .then (resultado => agregarDatosModal(cargarProductos(resultado)))
 }
 
-/**
- * Toma un elemento y le agrega el escuchhador del evento click para ejecutar la funcion que agrega los valores al mini carrito dentro del modal del producto
- */
+
 function agregarBotonModal(producto) {
     console.log(producto)
     let boton = d.getElementById('botonProducto').children[1];
@@ -292,10 +291,8 @@ function agregarBotonModal(producto) {
     }
     boton.id = `${producto.id}productoboton`;
 }
-/**
- * Crea el modal del producto
- * Toma los elementos del modal y modifica sus valores
- */
+
+
 function agregarDatosModal(producto) {
     d.getElementById('tituloProducto').innerHTML = producto.nombre
     let carrousel = d.getElementById('carrusel-producto').children;
