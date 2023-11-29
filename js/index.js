@@ -1,20 +1,3 @@
-
-// 'use strict';
-
-const consultAllChar = async function () {
-    
-
-    consulta = await fetch('./acciones/get-productos.php')
-                    .then(algo => algo.json())
-                    .then (algo => console.log(algo))
-
-}
-
-let misProductos = consultAllChar()
-
-console.log(misProductos)
-
-
 /*
  *  Alsinet Nicolas
  */
@@ -24,6 +7,7 @@ const htmlProductos = d.querySelector('#productos');
 const exampleModal = d.getElementById('exampleModal');
 const selectorCategoria = d.getElementById('categoria-producto');
 const btn_miniCarrito = d.querySelectorAll('.minicarrito-cantidad');
+const productos = []
 // Declaracion de Clases
 /**
  * Clase Productos con sus metodos
@@ -117,6 +101,7 @@ class Producto {
     crearHTMLproductoCard(){
         let productoImg = d.createElement('img');
         productoImg.className = 'card-img-top';
+        console.log(this.imagen)
         productoImg.setAttribute('src', this.imagen[0]);
         productoImg.setAttribute('alt', this.altImagen[0]);
         let productoCategoria = d.createElement('span');
@@ -290,11 +275,22 @@ class Carrito {
 };
 /* Armado de Objetos */
 // Se declaran la productos y se ejecuta la funcion cargar productos que itera y crea el array de productos de clase Producto
-let productos = [];
-cargarProductos(misProductos);
+const consultAllChar = async function () {
+    await fetch('./acciones/get-productos.php')
+        .then(algo => algo.json())
+        .then (productos => productos.map((p) => {
+            // console.log(p)
+            cargarProductos(p)
+        }) )
+
+}
+
+consultAllChar()
+
 
 // Se declara el objeto carrito de clase Carrito
 let carrito = new Carrito;
+
 
 
 /**
@@ -302,10 +298,8 @@ let carrito = new Carrito;
  * @param {Objeto JSON} data 
  */
 function cargarProductos(data) {
-    for (let i = 0; i < data.productos.length; i++) {
-       let producto = new Producto (data.productos[i].id, data.productos[i].nombre, data.productos[i].descrip, data.productos[i].descrip_larga, data.productos[i].precio, data.productos[i].imagen, data.productos[i].altImagen, data.productos[i].categoria);
+       let producto = new Producto (data.id, data.nombre, data.descrip, data.descrip_larga, data.precio, data.imagen, data.altImagen, data.categoria);
        productos.push(producto);
-    }
 }
 /**
  * Toma el nodo donde se van mostrar todas las tarjetas de productos y agrega las cards de cada producto
