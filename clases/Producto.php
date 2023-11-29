@@ -6,7 +6,7 @@ class Producto {
     public $id;
     public $nombre;
     public $descrip;
-    public $descripLarga;
+    public $descrip_larga;
     public $precio;
     public $imagen;
     public $altImagen;
@@ -28,7 +28,7 @@ class Producto {
             $newObject->id = $object->id;
             $newObject->nombre = $object->nombre;
             $newObject->descrip = $object->descrip;
-            $newObject->descripLarga = $object->descrip_larga;
+            $newObject->descrip_larga = $object->descrip_larga;
             $newObject->precio = $object->precio;
             $newObject->imagen = $this->formatearSTNOBJ($object->imagen);
             $newObject->altImagen = $this->formatearSTNOBJ($object->imagen, false);

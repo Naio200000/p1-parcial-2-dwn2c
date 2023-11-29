@@ -296,8 +296,8 @@ let carrito = new Carrito;
  * @param {Objeto JSON} data 
  */
 function cargarProductos(data) {
-       let producto = new Producto (data.id, data.nombre, data.descrip, data.descrip_larga, data.precio, data.imagen, data.altImagen, data.categoria);
-       productos.push(producto);
+        let producto = new Producto (data.id, data.nombre, data.descrip, data.descrip_larga, data.precio, data.imagen, data.altImagen, data.categoria);
+        productos.push(producto);
 
 }
 /**
