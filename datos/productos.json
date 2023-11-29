@@ -113,7 +113,7 @@
 		"descrip":"Katana de entenamiento con filo, Hecha en acero 1060",
 		"descrip_larga":"Una katana hecah de manera industrial con acero de alta calidad. LLevada a filo de navaja",
 		"precio":50000,
-		"imagen":{"../img/productos/katana-02.jpg":"Shinken sobre un fondo blanco","../img/productos/katana-01.jpg":"Banner mostrando partes de un Shinken","../img/productos/katana-03.jpg:":"Shinken sobre un fondo Negro"},
+		"imagen":{"../img/productos/katana-02.jpg":"Shinken sobre un fondo blanco","../img/productos/katana-01.jpg":"Banner mostrando partes de un Shinken","../img/productos/katana-03.jpg":"Shinken sobre un fondo Negro"},
 		"categoria":"equipos"
 	},
 	{
