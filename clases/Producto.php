@@ -5,12 +5,11 @@ class Producto {
 
     public $id;
     public $nombre;
-    public $descripCorta;
+    public $descrip;
     public $descripLarga;
-    public $etc;
-    public $tiempo;
     public $precio;
     public $imagen;
+    public $altImagen;
     public $categoria;
 
     /**
@@ -28,10 +27,11 @@ class Producto {
 
             $newObject->id = $object->id;
             $newObject->nombre = $object->nombre;
-            $newObject->descripCorta = $object->descrip;
+            $newObject->descrip = $object->descrip;
             $newObject->descripLarga = $object->descrip_larga;
             $newObject->precio = $object->precio;
-            $newObject->imagen = $object->imagen;
+            $newObject->imagen = $this->formatearSTNOBJ($object->imagen);
+            $newObject->altImagen = $this->formatearSTNOBJ($object->imagen, false);
             $newObject->categoria = $object->categoria;
 
             $productosOBJ[] = $newObject;
@@ -79,4 +79,19 @@ class Producto {
         return null; 
     }
 
+
+    public function formatearSTNOBJ( $dato, $s = true) :array {
+
+        $formatear = (array)$dato;
+        $datosAFormatear = [];
+
+        foreach ($formatear as $k => $v) {
+            if($s) {
+                $datosAFormatear[] = $k;
+            } else {
+                $datosAFormatear[] = $v;
+            }
+        }
+        return $datosAFormatear;
+    }
 }
