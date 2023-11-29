@@ -276,7 +276,7 @@ class Carrito {
 /* Armado de Objetos */
 // Se declaran la productos y se ejecuta la funcion cargar productos que itera y crea el array de productos de clase Producto
 const traerProductos = async function () {
-    await fetch('./acciones/get-productos.php')
+    await fetch('./../acciones/get-productos.php')
         .then(algo => algo.json())
         .then (productos => productos.map((p) => {
             cargarProductos(p)
