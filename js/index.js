@@ -275,7 +275,6 @@ const traerProductoid = async function (id) {
 
 
 function agregarBotonModal(producto) {
-    console.log(producto)
     let boton = d.getElementById('botonProducto').children[1];
 
     if (boton.id == 'cambiarIDBoton') {
