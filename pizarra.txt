@@ -1,6 +1,5 @@
 Tareas
 
-Agregar local Storage del carrito y sus items.
 
 Agregar service worker
 
