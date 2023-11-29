@@ -101,7 +101,6 @@ class Producto {
     crearHTMLproductoCard(){
         let productoImg = d.createElement('img');
         productoImg.className = 'card-img-top';
-        console.log(this.imagen)
         productoImg.setAttribute('src', this.imagen[0]);
         productoImg.setAttribute('alt', this.altImagen[0]);
         let productoCategoria = d.createElement('span');
@@ -275,7 +274,7 @@ class Carrito {
 };
 /* Armado de Objetos */
 // Se declaran la productos y se ejecuta la funcion cargar productos que itera y crea el array de productos de clase Producto
-const consultAllChar = async function () {
+const traerProductos = async function () {
     await fetch('./acciones/get-productos.php')
         .then(algo => algo.json())
         .then (productos => productos.map((p) => {
@@ -285,7 +284,7 @@ const consultAllChar = async function () {
 
 }
 
-consultAllChar()
+traerProductos()
 
 
 // Se declara el objeto carrito de clase Carrito
@@ -300,14 +299,16 @@ let carrito = new Carrito;
 function cargarProductos(data) {
        let producto = new Producto (data.id, data.nombre, data.descrip, data.descrip_larga, data.precio, data.imagen, data.altImagen, data.categoria);
        productos.push(producto);
+
 }
 /**
  * Toma el nodo donde se van mostrar todas las tarjetas de productos y agrega las cards de cada producto
  * @param {Array de productos} array 
  */
 function mostrarProductos (array) {
+    console.log(array)
     htmlProductos.innerHTML = '';
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < 21; i++) {
         htmlProductos.appendChild(array[i].card);
     }
 }
