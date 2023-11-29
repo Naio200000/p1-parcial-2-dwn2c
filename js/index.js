@@ -172,6 +172,8 @@ class Carrito {
             let boton = e.target;
             let index = parseInt(boton.id);
             carrito.producto.splice(index,1)
+            this.borrarCarritoLocal()
+            this.guardarCarritoLocal()
             carrito.armarCarrito();
             mostrarMiniCarrito () 
         })
@@ -232,7 +234,9 @@ class Carrito {
     obtenerCarritoLocal() {
         this.producto = JSON.parse(localStorage.getItem("carrito"));
     }
-    
+    borrarCarritoLocal() {
+        localStorage.removeItem('carrito')
+    }
 };
 
 
@@ -336,7 +340,7 @@ function mostrarProductos (array) {
  * Ejecuta los metodos del carrito para agregar los valores de cantidad y precio
  */
 function mostrarMiniCarrito () {
-    // if (localStorage.getItem("carrito")) carrito.obtenerCarritoLocal()
+    if (localStorage.getItem("carrito")) carrito.obtenerCarritoLocal()
     carrito.armarMiniCarrito('minicarrito-cantidad', carrito.producto.length);
     carrito.armarMiniCarrito('minicarrito-precio', carrito.calcularTotal());
 
