@@ -1,10 +1,6 @@
 Tareas
 
 
-Agregar service worker
-
-Agregar catche
-
-Agregar CATCH a los fetch por si no hay conexion ni catche
+Agregar aviso si no hay conexion al hacer una consulta
 
 Agregar log in por POST
