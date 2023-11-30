@@ -4,11 +4,13 @@ caches.keys().then(cache => {
 
 
 self.addEventListener("install", (e) => {
-    console.log("install");
     caches.open("basicApp").then((cache) => {
         cache.addAll([
-            '../',
-            '../views/',
+            '../index.html',
+            '../manifest.json',
+            '../views/dojos.html',
+            '../views/tienda.html',
+            '../views/nosotros.html',
             '../img/hero/komei-juku-hero-2.webp',
             '../img/hero/komei-juku-hero-3.webp',
             '../img/hero/komei-juku-hero-4.webp',
@@ -39,4 +41,17 @@ self.addEventListener("install", (e) => {
 self.addEventListener("fetch", (e) => {
     const url = e.request.url;
     console.log(url);
+    const response =
+        fetch(e.request)
+            .then((res) => {
+              return caches.open('basicApp').then(cache => {
+                  cache.put(e.request, res.clone());
+                  return res;
+              })
+            })
+            .catch((err) => {
+                return caches.match(e.request);
+            })
+    e.respondWith(response);
+
 });
