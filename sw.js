@@ -1,6 +1,6 @@
 self.addEventListener("install", (e) => {
-    caches.open("basicApp").then((cache) => {
-        cache.addAll([
+    const cache = caches.open("basicApp").then((c) => {
+        c.addAll([
             './index.html',
             './manifest.json',
             './views/dojos.html',
@@ -27,30 +27,25 @@ self.addEventListener("install", (e) => {
             './img/misc/tarjetas.jfif',
             './estilos/style.css',
             'https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css',
-            'https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js'
+            'https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js',
+            'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Roboto:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap'
         ]);
     });
+    e.waitUntil(cache);
 });
 
 
 self.addEventListener("fetch", (e) => {
-    let url = e.request.url
-    if(url.includes("img")) { // intercepto imagen
-        e.respondWith( // reemplazo la respuesta
-            fetch(url) //consulto por la info de la imagen
-            .then(respuesta => {
-                console.log("interceptando imagen", respuesta.status)
-                if(respuesta.status === 404) {
-                    return fetch('https://placehold.co/600x400');
-                } else {
-                    return respuesta;
-                }
-            })
-        );
-    }
+    const response = fetch(e.request)
+                    .then((res) => {
+                        return caches.open('basicApp').then(cache => {
+                            cache.put(e.request, res.clone());
+                            return res;
+                        })
+                    })
+                    .catch((err) => {
+                        return caches.match(e.request);
+                    })
+    e.respondWith(response);
+
 });
-
-
-caches.keys().then(cache => {
-    console.log("cache", cache)
-})
