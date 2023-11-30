@@ -36,9 +36,14 @@ self.addEventListener("install", (e) => {
 
 
 self.addEventListener("fetch", (e) => {
+    let url = e.request.url
+    let cacheStorage = 'basicApp';
+    if (url.includes("producto")) {
+        cacheStorage = 'producto'
+    }
     const response = fetch(e.request)
                     .then((res) => {
-                        return caches.open('basicApp').then(cache => {
+                        return caches.open(cacheStorage).then(cache => {
                             cache.put(e.request, res.clone());
                             return res;
                         })
