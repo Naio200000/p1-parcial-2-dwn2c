@@ -250,7 +250,10 @@ class Carrito {
 
 function install () {
     if (installevent != null) {
-        console.log(installevent)
+        installevent.prompt()
+            .then(({outcome}) => {
+                console.log(outcome)
+            })
     } else {
         console.log('no esta')
     }
