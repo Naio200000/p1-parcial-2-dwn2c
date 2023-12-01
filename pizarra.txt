@@ -3,12 +3,6 @@ Tareas
 
 Agregar aviso si no hay conexion al hacer una consulta
 
-Agregar modal de saludo log in
-
-Agregar modal de confirmacion log out
-
-Mejorar la posiscion del boton login logout
-
 validar form usuario en front y back end
 
 vincular carrito con usuario cuando se logua

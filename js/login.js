@@ -1,7 +1,7 @@
 const loginForm = document.getElementById('loginForm')
 const validateError = document.getElementById('validateError')
 const loginbtn = document.getElementById('loginbtn')
-
+const login = localStorage.getItem('login') ? JSON.parse(localStorage.getItem("login")) : false
 
 if (loginForm != null) {
     loginForm.addEventListener('submit', async (e) => {
@@ -30,21 +30,39 @@ if (loginForm != null) {
 
 const checklogin = function () {
     loginbtn.innerHTML = 'Iniciar Sesion'
-
+    const loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {keyboard: false})
+    const url = document.referrer
     if (localStorage.getItem('login')){
+        if (url.includes('login')) {
+            loginModal.toggle()
+            document.querySelector('#loginModal #userModal').innerHTML = `Hola ${login.username}`
+            document.querySelector('#loginModal #cerrarSesionbtn').addEventListener('click', () => {
+                loginModal.toggle()
+            })
+        }
         loginbtn.innerHTML = 'Cerrar Sesion'
         loginbtn.href = ''
         loginbtn.setAttribute('data-bs-toggle', 'modal')
         loginbtn.setAttribute('data-bs-target', '#loginModal')
-        let loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {keyboard: false})
-        document.querySelector('#loginModal #loginModalLabel').innerHTML = 'Cerrar Sesion'
-        document.querySelector('#loginModal #userModal').innerHTML = 'Esta seguro que quiere Cerrar Sesion?'
-        document.querySelector('#loginModal #cerrarSesionbtn').addEventListener('click', () => {
-            logout()
-            loginModal.toggle()
+        document.getElementById('loginModal').addEventListener('hide.bs.modal', () => {
+            cambiaLoginModal(loginModal)
         })
     }
     
+}
+
+const inicioLoginModal = function () {
+
+}
+
+const cambiaLoginModal = function (loginModal) {
+    document.querySelector('#loginModal #loginModalLabel').innerHTML = 'Cerrar Sesion'
+    document.querySelector('#loginModal #userModal').innerHTML = 'Esta seguro que quiere Cerrar Sesion?'
+    document.querySelector('#loginModal #cerrarSesionbtn').innerHTML = 'Cerrar Sesión'
+    document.querySelector('#loginModal #cerrarSesionbtn').addEventListener('click', () => {
+        logout()
+        loginModal.toggle()
+    })
 }
 const logout = function () {
     localStorage.removeItem('login')
