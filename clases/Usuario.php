@@ -65,7 +65,16 @@ class Usuario {
     public function usuarioUsername(string $username) :?Usuario {
 
 
-        return null;
+        $completo = $this->getAllUsers();
+
+        foreach ($completo as $usuario) {
+            if ($usuario->username == $username) {
+                return $usuario;
+            }
+        }
+
+        return null; 
+
     }
     
 }
