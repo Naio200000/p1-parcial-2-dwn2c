@@ -51,9 +51,6 @@ const checklogin = function () {
     
 }
 
-const inicioLoginModal = function () {
-
-}
 
 const cambiaLoginModal = function (loginModal) {
     document.querySelector('#loginModal #loginModalLabel').innerHTML = 'Cerrar Sesion'

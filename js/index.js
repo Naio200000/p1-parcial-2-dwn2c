@@ -261,6 +261,9 @@ const traerProductosCategoria = async function (categoria) {
         .then (resultado => resultado.map((p) => {
             productos.push(cargarProductos(p))    
         }) )
+        navigator.serviceWorker.addEventListener('message', (e) => {
+            console.log(e.data)
+        })
         mostrarProductos (productos);
 }
 
