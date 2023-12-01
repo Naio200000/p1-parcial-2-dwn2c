@@ -3,4 +3,10 @@ Tareas
 
 Agregar aviso si no hay conexion al hacer una consulta
 
-Agregar log in por POST
+Agregar modal de saludo log in
+
+Agregar modal de confirmacion log out
+
+Mejorar la posiscion del boton login logout
+
+validar form usuario en front y back end
