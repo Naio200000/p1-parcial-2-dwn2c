@@ -37,7 +37,23 @@ class Usuario {
 
 
     private function getAllUsers () {
-        
+
+
+        $usersOBJ = [];
+        $usersJSON = file_get_contents('../datos/usuarios.json');
+        $users = json_decode($usersJSON);
+        foreach ($users as $object) {
+            $newObject = new self ();
+
+            $newObject->id = $object->id;
+            $newObject->username = $object->username;
+            $newObject->password = $object->password;
+
+            $usersOBJ[] = $newObject;
+
+        }
+
+        return $usersOBJ;
     }
 
         
