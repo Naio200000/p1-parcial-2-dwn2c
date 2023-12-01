@@ -256,7 +256,7 @@ const traerProductos = async function () {
  */
 const traerProductosCategoria = async function (categoria) {
     productos = []
-    await fetch(`./../acciones/get-productos.php?categoria=${categoria}`)
+    await fetch(`./../acciones/get-productos.php?categoria=${categoria.toLowerCase()}`)
         .then(algo => algo.json())
         .then (resultado => resultado.map((p) => {
             productos.push(cargarProductos(p))    
@@ -385,9 +385,8 @@ function btn_carrito() {
  */
 if (selectorCategoria != null) {
 
-    selectorCategoria.addEventListener('change', () => {
+    selectorCategoria.addEventListener('change', (e) => {
         if (selectorCategoria.value == 'Todas') {
-    
             traerProductos();
         } else {
             traerProductosCategoria(selectorCategoria.value);

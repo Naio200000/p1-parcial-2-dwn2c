@@ -46,10 +46,11 @@ self.addEventListener("fetch", (e) => {
     }
     const response = fetch(e.request)
                     .then((res) => {
-                        return caches.open(cacheStorage).then(cache => {
-                            cache.put(e.request, res.clone());
-                            return res;
-                        })
+                        return caches.open(cacheStorage)
+                            .then(cache => {
+                                cache.put(e.request, res.clone());
+                                return res;
+                            })
                     })
                     .catch((err) => {
                         return caches.match(e.request);
