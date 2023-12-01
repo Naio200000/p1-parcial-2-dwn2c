@@ -1,10 +1,7 @@
 /*
  *  Alsinet Nicolas
  */
-let installevent
-window.addEventListener("beforeinstallprompt", (e) =>{
-    installevent = e
-})
+
 
 
 /*Declaracion de Constantes */
@@ -252,17 +249,32 @@ function install () {
     if (installevent != null) {
         installevent.prompt()
             .then(({outcome}) => {
-                console.log(outcome)
+                if (outcome == 'acceptd') {
+                    installbtn.classList.remove('d-block')
+                    installbtn.classList.add('d-none')
+                    location.reload(true)
+                }
             })
-    } else {
-        console.log('no esta')
     }
 }
+
+let installevent
+window.addEventListener("beforeinstallprompt", (e) =>{
+    installevent = e
+    installbtn.classList.remove('d-none')
+    installbtn.classList.add('d-block')
+})
 
 installbtn.addEventListener('click', (e) => {
     install()
 })
+if (installevent == null) {
+    
+    installbtn.classList.remove('d-block')
+    installbtn.classList.add('d-none')
 
+} 
+    
 
 
 /* Trae todo el catalogo completo desde una consulta fetch */
