@@ -49,6 +49,10 @@ const checklogin = function () {
 const logout = function () {
     localStorage.removeItem('login')
     loginbtn.innerHTML = 'Iniciar Sesion'
+    loginbtn.href = '../views/login.html'
+    if (document.URL.includes('index')) loginbtn.href = './views/login.html'
+    loginbtn.removeAttribute('data-bs-toggle')
+    loginbtn.removeAttribute('data-bs-target')
 }
 
 
