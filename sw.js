@@ -37,6 +37,9 @@ self.addEventListener("install", (e) => {
 
 self.addEventListener("fetch", (e) => {
     let url = e.request.url
+    if (url.includes("login")) {
+        return fetch(e.request);
+    }
     let cacheStorage = 'basicApp';
     if (url.includes("producto")) {
         cacheStorage = 'producto'
