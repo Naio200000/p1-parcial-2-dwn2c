@@ -81,6 +81,11 @@ main {
 .dojos-textos {
     text-align: center;
 }
+.login {
+    background-color: #fff;
+    padding-top: 72px;
+    color: var(--main-font-color);
+}
 .social,
 .datos {
     list-style: none;
