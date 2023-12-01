@@ -4,7 +4,6 @@
 let installevent
 window.addEventListener("beforeinstallprompt", (e) =>{
     installevent = e
-    console.log(installevent)
 })
 
 
@@ -15,6 +14,7 @@ const exampleModal = d.getElementById('exampleModal');
 const selectorOrdenar = d.getElementById('ordenar-producto');
 const selectorCategoria = d.getElementById('categoria-producto');
 const btn_miniCarrito = d.querySelectorAll('.minicarrito-cantidad');
+const installbtn = d.getElementById('installbtn')
 
 // Declaracion de Clases
 /**
@@ -248,6 +248,20 @@ class Carrito {
     }
 };
 
+function install () {
+    if (installevent != null) {
+        console.log(installevent)
+    } else {
+        console.log('no esta')
+    }
+}
+
+installbtn.addEventListener('click', (e) => {
+    install()
+})
+
+
+
 /* Trae todo el catalogo completo desde una consulta fetch */
 const traerProductos = async function () {
     productos = []
@@ -410,6 +424,12 @@ if (selectorOrdenar != null) {
         mostrarProductos (ordenarProductos());
     })
 }
+
+
+
+
+
+
 /**
  * Se ejecutan las primeras funciones de carga al iniciar la pagina
  */
