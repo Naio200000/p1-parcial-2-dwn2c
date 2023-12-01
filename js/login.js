@@ -33,9 +33,11 @@ const checklogin = function () {
     if (localStorage.getItem('login')){
         loginbtn.innerHTML = 'Cerrar Sesion'
         loginbtn.href = ''
-        loginbtn.addEventListener('click', (e)=> {
-            logout()
-        })
+        loginbtn.setAttribute('data-bs-toggle', 'modal')
+        loginbtn.setAttribute('data-bs-target', '#loginModal')
+        // loginbtn.addEventListener('click', (e)=> {
+        //     logout()
+        // })
     }
     
 }
@@ -45,3 +47,5 @@ const logout = function () {
 
 
 checklogin()
+
+
