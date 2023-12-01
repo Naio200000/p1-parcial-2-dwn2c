@@ -5,6 +5,7 @@
 const d = document
 const htmlProductos = d.querySelector('#productos');
 const exampleModal = d.getElementById('exampleModal');
+const selectorOrdenar = d.getElementById('ordenar-producto');
 const selectorCategoria = d.getElementById('categoria-producto');
 const btn_miniCarrito = d.querySelectorAll('.minicarrito-cantidad');
 // Declaracion de Clases
@@ -328,10 +329,33 @@ function cargarProductos(data) {
 function mostrarProductos (array) {
 
     htmlProductos.innerHTML = '';
-    for (let i = 0; i < 21; i++) {
+    for (let i = 0; i < array.length; i++) {
         htmlProductos.appendChild(array[i].card);
     }
 }
+
+function ordenarProductos() {
+    switch (selectorOrdenar.value) {
+        case 'relevancia':
+            productos.sort((a,b) => {
+                return a.id - b.id;
+            });
+            break;
+        case 'mayor':
+            productos.sort((a,b) => {
+                return b.precio - a.precio;
+            });
+            break;
+        case 'menor':
+            productos.sort((a,b) => {
+                return a.precio - b.precio;
+            });
+            break;
+    }
+
+    return productos
+}
+
 /**
  * Ejecuta los metodos del carrito para agregar los valores de cantidad y precio
  */
@@ -371,6 +395,9 @@ if (selectorCategoria != null) {
     })
 }
 
+selectorOrdenar.addEventListener('change', () => {
+    mostrarProductos (ordenarProductos());
+})
 /**
  * Se ejecutan las primeras funciones de carga al iniciar la pagina
  */

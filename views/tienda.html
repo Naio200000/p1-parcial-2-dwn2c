@@ -82,14 +82,23 @@
       <p class="fs-5 w-75 mx-auto">En nuestra tienda encontrarás todo lo <em>necesario para tu entrenamiento</em>. Podrás encontrar paquetes de clases, toda la ropa necesaria (<span lang="ja">keikogi, Obi, Hakamas</span>) de diversos tamaños y calidad, y también podrás encontrar los equipos necesarios (<span lang="ja">Katana, Bokken</span>)</p>
       <div class="productos pb-3">
         <div class="categoria py-1 pe-2">
-          <form action="#" class="d-flex justify-content-end">
+          <form action="#" class="d-flex justify-content-between">
+            <div class="px-2">
+              <label for="ordenar-producto" class="form-label ">Ordenar</label>
+              <select name="ordenar-producto" id="ordenar-producto">
+                <option value="relevancia">Más Relevantes</option>
+                <option value="mayor">Mayor Precio</option>
+                <option value="menor">Menor Precio</option>
+
+              </select>
+            </div>
             <div class="">
               <label for="categoria-producto" class="form-label ">Filtrar por Categoría</label>
               <select name="categoria-producto" id="categoria-producto">
                 <option value="Todas">Todas</option>
-                <option value="clases">Clases</option>
-                <option value="ropa">Ropa</option>
-                <option value="equipos">Equipos</option>
+                <option value="Clases">Clases</option>
+                <option value="Ropa">Ropa</option>
+                <option value="Equipos">Equipos</option>
               </select>
             </div>
           </form>

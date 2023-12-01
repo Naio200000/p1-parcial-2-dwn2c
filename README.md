@@ -25,12 +25,12 @@ Consigna del trabajo
 Realizar una aplicación web que funciona completamente offline. Se debe tomar como base lo realizado en el parcial 1.
 Obligatorio (verificar uno a uno):
     interfaz amigable con el usuario, con uso de Service Worker
-    precaching todos los elementos necesarios para la carga inicial
-    incluir manifiesto correctamente
+X    precaching todos los elementos necesarios para la carga inicial
+X    incluir manifiesto correctamente
 X    navegación principal (home)
 X    listado de artículos
 X    vista ampliada o detalle de artículos (en subpágina o bien en modal)
-    uso de persistencia (localStorage) que se vea reflejado en la interacción
+X    uso de persistencia (localStorage) que se vea reflejado en la interacción
 X    uso de async/await por lo menos una vez
     debe haber algún formulario que esté validado.
 X    al menos un consumo de datos a servidor por GET usando api externa, o api php propia (no es válido consumir un json pero se puede leer el json devolverlo desde el backend).
@@ -40,7 +40,7 @@ X    al menos un consumo de datos a servidor por GET usando api externa, o api p
 Adicionales:
     interacción funcional (si el envío o recepción HTTP falla debería saberlo el usuario, por ejemplo mostrando un mensaje)
     uso de notificaciones (testeable)
--    navegación secundaria (subpágina)
+X    navegación secundaria (subpágina)
 X    Uso combinado de promise y asyc-await
     Validación de datos en el back (con fines de testeo).
     Validación de datos del formulario (front) con el back (los datos son válidos para el envío, pero en la práctica son inválidos, por ejemplo un nombre que incluya letras o caracteres especiales como el @) .
