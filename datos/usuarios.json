@@ -2,16 +2,16 @@
 	{
 		"id": 1,
 		"username":"nalsinet",
-		"password":"Passw0rd"
+		"password":"$2y$10$JTzmVXPgFOuIieyiJMqFguzImgv8JA1eBGcLdJHDdHva.8y/GF8zS"
 	},	
     {
 		"id": 2,
 		"username":"jperez",
-		"password":"Passw0rd"
+		"password":"$2y$10$AMFgnwxLlQhPK/7K/OhwP.bOz2/VBURAC.GXQAmiRcJxlccD17w/."
 	},
     {
 		"id": 3,
 		"username":"mlopez",
-		"password":"Passw0rd"
+		"password":"$2y$10$ZSW/0yQkX8y7bzZwIfkNUuWUrm42HbtSHGVYAKTssKGDduIjsUZZq"
 	}
 ]
