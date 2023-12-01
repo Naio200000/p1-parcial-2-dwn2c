@@ -2,16 +2,16 @@
 	{
 		"id": 1,
 		"username":"nalsinet",
-		"password":"$2y$10$JTzmVXPgFOuIieyiJMqFguzImgv8JA1eBGcLdJHDdHva.8y/GF8zS"
+		"password":"$2y$10$GMbGr92rccUtU/dssi0fvOTi5j2z4eSVqpOwECehvd9czDDu5QFI6"
 	},	
     {
 		"id": 2,
 		"username":"jperez",
-		"password":"$2y$10$AMFgnwxLlQhPK/7K/OhwP.bOz2/VBURAC.GXQAmiRcJxlccD17w/."
+		"password":"$2y$10$e8DNKMrYausudjN601bnku6eYAV1mLGo7yasAysEmfBcBnKncVx.K"
 	},
     {
 		"id": 3,
 		"username":"mlopez",
-		"password":"$2y$10$ZSW/0yQkX8y7bzZwIfkNUuWUrm42HbtSHGVYAKTssKGDduIjsUZZq"
+		"password":"$2y$10$Blfktfo2mGgFTPPxBeHWsuVPiNigO2VAYRMaRnUIuStMbyHa/C5D."
 	}
 ]

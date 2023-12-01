@@ -62,7 +62,7 @@ class Usuario {
      * @param string nombre de usuario
      * @return ?Usuario usuario encontrado o null
      */
-    public function usuarioUsername(string $username) :?Usuario {
+    private function usuarioUsername(string $username) :?Usuario {
 
 
         $completo = $this->getAllUsers();
@@ -77,4 +77,24 @@ class Usuario {
 
     }
     
+
+    /**
+     * Valida el ingreso de un usuario
+     * @param string $username el nombre de usuario a verificar
+     * @param string $password el password de usuario a verificar
+     * @return mixed devuelve el rol del usuario si hay coinsidencias, false si el password es incorrecto y null si no encuentra usuario
+     */
+    public function log_in(string $usuario, string $password) :mixed {
+        $datosUsuario = (new Usuario())->usuarioUsername($usuario);
+
+        if ($datosUsuario) {
+            if (password_verify($password, $datosUsuario->getPassword())) {
+                return $datosUsuario->getUsername();
+            } else {
+                return FALSE;
+            }
+        } else {
+            return NULL;
+        }
+    }
 }
