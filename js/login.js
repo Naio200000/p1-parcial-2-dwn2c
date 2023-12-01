@@ -2,6 +2,7 @@ const loginForm = document.getElementById('loginForm')
 const validateError = document.getElementById('validateError')
 const loginbtn = document.getElementById('loginbtn')
 
+
 if (loginForm != null) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -35,14 +36,19 @@ const checklogin = function () {
         loginbtn.href = ''
         loginbtn.setAttribute('data-bs-toggle', 'modal')
         loginbtn.setAttribute('data-bs-target', '#loginModal')
-        // loginbtn.addEventListener('click', (e)=> {
-        //     logout()
-        // })
+        let loginModal = new bootstrap.Modal(document.getElementById('loginModal'), {keyboard: false})
+        document.querySelector('#loginModal #loginModalLabel').innerHTML = 'Cerrar Sesion'
+        document.querySelector('#loginModal #userModal').innerHTML = 'Esta seguro que quiere Cerrar Sesion?'
+        document.querySelector('#loginModal #cerrarSesionbtn').addEventListener('click', () => {
+            logout()
+            loginModal.toggle()
+        })
     }
     
 }
 const logout = function () {
     localStorage.removeItem('login')
+    loginbtn.innerHTML = 'Iniciar Sesion'
 }
 
 
