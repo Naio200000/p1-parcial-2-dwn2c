@@ -395,9 +395,11 @@ if (selectorCategoria != null) {
     })
 }
 
-selectorOrdenar.addEventListener('change', () => {
-    mostrarProductos (ordenarProductos());
-})
+if (selectorOrdenar != null) {
+    selectorOrdenar.addEventListener('change', () => {
+        mostrarProductos (ordenarProductos());
+    })
+}
 /**
  * Se ejecutan las primeras funciones de carga al iniciar la pagina
  */
