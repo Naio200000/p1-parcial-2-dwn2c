@@ -16,8 +16,9 @@ loginForm.addEventListener('submit', async (e) => {
 
 const validateLogin = function(json) {
 
-    if (json.login){
-        console.log(json.username)
+    if (json.login){ 
+        localStorage.setItem("login", JSON.stringify(json));
+        window.location.replace("../index.html");
     } else {
         validateError.innerHTML = json.mensaje
     }
