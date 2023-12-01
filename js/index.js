@@ -1,6 +1,13 @@
 /*
  *  Alsinet Nicolas
  */
+let installevent
+window.addEventListener("beforeinstallprompt", (e) =>{
+    installevent = e
+    console.log(installevent)
+})
+
+
 /*Declaracion de Constantes */
 const d = document
 const htmlProductos = d.querySelector('#productos');
@@ -8,6 +15,7 @@ const exampleModal = d.getElementById('exampleModal');
 const selectorOrdenar = d.getElementById('ordenar-producto');
 const selectorCategoria = d.getElementById('categoria-producto');
 const btn_miniCarrito = d.querySelectorAll('.minicarrito-cantidad');
+
 // Declaracion de Clases
 /**
  * Clase Productos con sus metodos
