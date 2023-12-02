@@ -2,6 +2,13 @@
  *  Alsinet Nicolas
  */
 
+if("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js")
+    .then((registration) => {
+    })
+    .catch((error) => {
+    });
+}
 
 
 /*Declaracion de Constantes */
@@ -11,7 +18,7 @@ const exampleModal = d.getElementById('exampleModal');
 const selectorOrdenar = d.getElementById('ordenar-producto');
 const selectorCategoria = d.getElementById('categoria-producto');
 const btn_miniCarrito = d.querySelectorAll('.minicarrito-cantidad');
-const installbtn = d.getElementById('installbtn')
+const installbtn = d.querySelector('.installbtn')
 
 // Declaracion de Clases
 /**
@@ -250,8 +257,8 @@ function install () {
         installevent.prompt()
             .then(({outcome}) => {
                 if (outcome == 'acceptd') {
-                    installbtn.classList.remove('d-block')
                     installbtn.classList.add('d-none')
+                    installbtn.classList.remove('d-block')
                     location.reload(true)
                 }
             })
@@ -259,6 +266,7 @@ function install () {
 }
 
 let installevent
+console.log(installevent)
 window.addEventListener("beforeinstallprompt", (e) =>{
     installevent = e
     installbtn.classList.remove('d-none')
@@ -273,7 +281,9 @@ if (installevent == null) {
     installbtn.classList.remove('d-block')
     installbtn.classList.add('d-none')
 
-} 
+} else {
+    console.log('meg')
+}
     
 
 

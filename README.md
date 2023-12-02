@@ -35,7 +35,7 @@ X    uso de async/await por lo menos una vez
     debe haber algún formulario que esté validado.
 X    al menos un consumo de datos a servidor por GET usando api externa, o api php propia (no es válido consumir un json pero se puede leer el json devolverlo desde el backend).
 X    al menos un envío de datos a servidor por POST (por ejemplo api php)
-    botón de instalación (que se oculte post instalación)
+X    botón de instalación (que se oculte post instalación)
 
 Adicionales:
 -    interacción funcional (si el envío o recepción HTTP falla debería saberlo el usuario, por ejemplo mostrando un mensaje)
