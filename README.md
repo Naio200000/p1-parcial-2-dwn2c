@@ -32,7 +32,7 @@ X    listado de artículos
 X    vista ampliada o detalle de artículos (en subpágina o bien en modal)
 X    uso de persistencia (localStorage) que se vea reflejado en la interacción
 X    uso de async/await por lo menos una vez
-    debe haber algún formulario que esté validado.
+X    debe haber algún formulario que esté validado.
 X    al menos un consumo de datos a servidor por GET usando api externa, o api php propia (no es válido consumir un json pero se puede leer el json devolverlo desde el backend).
 X    al menos un envío de datos a servidor por POST (por ejemplo api php)
 X    botón de instalación (que se oculte post instalación)
