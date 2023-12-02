@@ -3,20 +3,76 @@
  */
   // Import the functions you need from the SDKs you need
 
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-  const firebaseConfig = {
-    apiKey: "AIzaSyBhxwDxgo7gHqpopbENH1hq8ki5BLkdyMI",
-    authDomain: "tienda-komei-pwa.firebaseapp.com",
-    projectId: "tienda-komei-pwa",
-    storageBucket: "tienda-komei-pwa.appspot.com",
-    messagingSenderId: "967614057162",
-    appId: "1:967614057162:web:c3a8087a4d6be8da688233"
-  };
-  // Initialize Firebase
+//   import { initializeApp, getMessaging } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+//   const firebaseConfig = {
+//     apiKey: "AIzaSyBhxwDxgo7gHqpopbENH1hq8ki5BLkdyMI",
+//     authDomain: "tienda-komei-pwa.firebaseapp.com",
+//     projectId: "tienda-komei-pwa",
+//     storageBucket: "tienda-komei-pwa.appspot.com",
+//     messagingSenderId: "967614057162",
+//     appId: "1:967614057162:web:c3a8087a4d6be8da688233"
+//   };
+//   // Initialize Firebase
 
-  const appMessage = initializeApp(firebaseConfig);
-  const m = appMessage.messaging();
-  
+//   const appMessage = initializeApp(firebaseConfig);
+
+//   const messaging = getMessaging();
+//   getToken(messaging, { vapidKey: `BPyy_-Ly7qTfi5KkoN-f0W10Pspnrf1uDX_WWAtfACimj05YlY0k9HuXPbqMowMOKP1biOdAmB4yIZvuqXsaRrA` }).then((currentToken) => {
+//     if (currentToken) {
+//         console.log('meg')
+//     } else {
+//       // Show permission request UI
+//       console.log('No registration token available. Request permission to generate one.');
+//       // ...
+//     }
+//   }).catch((err) => {
+//     console.log('An error occurred while retrieving token. ', err);
+//     // ...
+//   });
+
+
+  function sendTokenToDB(done) {
+    m.getToken({
+        vapidKey: app_key
+    }).then((currentToken) => {
+        if (currentToken) {
+            console.log('current token for client: ', currentToken);
+            // Track the token -> client mapping, by sending to backend server
+            // show on the UI that permission is secured
+            // ... add you logic to send token to server
+        }
+    }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+        // catch error while creating client token
+    });
+}
+
+function onNotification(theNotification) {
+    const { title, link_url, ...options } = theNotification;
+    notification_options.data.link_url = link_url;
+
+    if ('serviceWorker' in navigator) {
+       // this will register the service worker or update it. More on service worker soon
+        navigator.serviceWorker.register('./firebase-messaging-sw.js', { scope: './' }).then(function (registration) {
+            console.log("Service Worker Registered");
+            setTimeout(() => {
+                // display the notificaiton
+                registration.showNotification(title, { ...notification_options, ...options }).then(done => {
+                    console.log("sent notificaiton to user");
+                    const audio = new Audio("./util/sound/one_soft_knock.mp3"); // only works on windows chrome
+                    audio.play();
+                }).catch(err => {
+                    console.error("Error sending notificaiton to user", err);
+                });
+                registration.update();
+            }, 100);
+        }).catch(function (err) {
+            console.log("Service Worker Failed to Register", err);
+        });
+    }
+}
+
+
 /**
  * Register Service worker
  */
