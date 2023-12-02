@@ -276,15 +276,14 @@ window.addEventListener("beforeinstallprompt", (e) =>{
 installbtn.addEventListener('click', (e) => {
     install()
 })
+
+// No se porque la consutla de beforeinstall solo la hace en el index, por ende en las otras vistas desaparece
 if (installevent == null) {
     
     installbtn.classList.remove('d-block')
     installbtn.classList.add('d-none')
 
-} else {
-    console.log('meg')
-}
-    
+}    
 
 
 /* Trae todo el catalogo completo desde una consulta fetch */
