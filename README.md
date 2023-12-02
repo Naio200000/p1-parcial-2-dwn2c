@@ -42,8 +42,8 @@ Adicionales:
     uso de notificaciones (testeable)
 X    navegación secundaria (subpágina)
 X    Uso combinado de promise y asyc-await
-    Validación de datos en el back (con fines de testeo).
-    Validación de datos del formulario (front) con el back (los datos son válidos para el envío, pero en la práctica son inválidos, por ejemplo un nombre que incluya letras o caracteres especiales como el @) .
+X    Validación de datos en el back (con fines de testeo).
+X    Validación de datos del formulario (front) con el back (los datos son válidos para el envío, pero en la práctica son inválidos, por ejemplo un nombre que incluya letras o caracteres especiales como el @) .
     Configuración de notificaciones usando fcm
 
 Plus:

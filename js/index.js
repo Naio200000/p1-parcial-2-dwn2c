@@ -1,7 +1,25 @@
 /*
  *  Alsinet Nicolas
  */
+  // Import the functions you need from the SDKs you need
 
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyBhxwDxgo7gHqpopbENH1hq8ki5BLkdyMI",
+    authDomain: "tienda-komei-pwa.firebaseapp.com",
+    projectId: "tienda-komei-pwa",
+    storageBucket: "tienda-komei-pwa.appspot.com",
+    messagingSenderId: "967614057162",
+    appId: "1:967614057162:web:c3a8087a4d6be8da688233"
+  };
+  // Initialize Firebase
+
+  const appMessage = initializeApp(firebaseConfig);
+  const m = appMessage.messaging();
+  
+/**
+ * Register Service worker
+ */
 if("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js")
     .then((registration) => {
@@ -9,7 +27,6 @@ if("serviceWorker" in navigator) {
     .catch((error) => {
     });
 }
-
 
 /*Declaracion de Constantes */
 const d = document
