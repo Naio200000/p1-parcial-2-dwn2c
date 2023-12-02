@@ -6,14 +6,20 @@ const login = localStorage.getItem('login') ? JSON.parse(localStorage.getItem("l
 if (loginForm != null) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        let username = document.getElementById('username').value
+        if (checkUsername(username)) {
+            let data = new FormData(loginForm)
     
-        let data = new FormData(loginForm)
-    
-        await fetch('../acciones/auth_login-accion.php', {
-            method: 'POST',
-            body: data })
-        .then(response => response.json())
-        .then(loginData => validateLogin(loginData))
+        
+            await fetch('../acciones/auth_login-accion.php', {
+                method: 'POST',
+                body: data })
+            .then(response => response.json())
+            .then(loginData => validateLogin(loginData))
+        } else {
+            
+        }
+
     
     })
     
@@ -27,6 +33,15 @@ if (loginForm != null) {
         }
     }
 }
+
+function checkUsername(user) {
+    if(/^[A-Za-z][A-Za-z0-9_]{4,14}$/.test(user)) {
+        return true
+    } else {
+        return false
+    }
+}
+ 
 
 const checklogin = function () {
     loginbtn.innerHTML = 'Iniciar Sesion'

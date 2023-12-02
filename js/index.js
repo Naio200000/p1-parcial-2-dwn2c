@@ -266,7 +266,6 @@ function install () {
 }
 
 let installevent
-console.log(installevent)
 window.addEventListener("beforeinstallprompt", (e) =>{
     installevent = e
     installbtn.classList.remove('d-none')
