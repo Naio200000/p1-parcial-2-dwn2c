@@ -3,11 +3,9 @@ require_once('../Clases/Usuario.php');
 
 $datosPOST = $_POST;
 
-$username = 'nalsinet';
-
 $usuario = (new Usuario)->log_in($datosPOST['username'], $datosPOST['password']);
 
-if(preg_match('/^[a-zA-Z]{5,15}$/', $username)) { 
+if(preg_match('/^[a-zA-Z]{5,15}$/', $datosPOST['username'])) { 
     if ($usuario) {
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode(['login' => true, 'username' => $usuario]);
@@ -20,5 +18,5 @@ if(preg_match('/^[a-zA-Z]{5,15}$/', $username)) {
     }
 } else {
     header('Content-Type: application/json; charset=utf-8');
-    echo (['login' => false, 'mensaje' => 'El usuario debe tener entre 5 y 15 caracteres y no poseer ningun caracter extraño']);
+    echo json_encode (['login' => false, 'mensaje' => 'El usuario debe tener entre 5 y 15 caracteres y no poseer ningun caracter extraño']);
 }

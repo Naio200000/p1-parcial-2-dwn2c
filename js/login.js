@@ -16,7 +16,7 @@ if (loginForm != null) {
             .then(response => response.json())
             .then(loginData => validateLogin(loginData))
         // } else {
-        //     document.getElementById('usernameerror').innerHTML = "El usuario debe tener entre 5 y 15 caracteres y no poseer ningun caracter extraño"
+        //     document.getElementById('validateError').innerHTML = "El usuario debe tener entre 5 y 15 caracteres y no poseer ningun caracter extraño"
         // }
 
     
