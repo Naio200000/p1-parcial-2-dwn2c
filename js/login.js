@@ -9,15 +9,14 @@ if (loginForm != null) {
         let username = document.getElementById('username').value
         if (checkUsername(username)) {
             let data = new FormData(loginForm)
-    
-        
+
             await fetch('../acciones/auth_login-accion.php', {
                 method: 'POST',
                 body: data })
             .then(response => response.json())
             .then(loginData => validateLogin(loginData))
         } else {
-            
+            document.getElementById('usernameerror').innerHTML = "El usuario debe tener entre 5 y 15 caracteres y no poseer ningun caracter extraño"
         }
 
     
